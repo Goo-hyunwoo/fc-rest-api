@@ -1,6 +1,7 @@
 package com.example.restapi.controller;
 
 import com.example.restapi.model.BookQueryParam;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,5 +39,10 @@ public class RestApiController {
     public String queryParam2(BookQueryParam bookQueryParam) {
         System.out.println(bookQueryParam);
         return "";
+    }
+
+    @ExceptionHandler(value={IndexOutOfBoundsException.class})
+    public ResponseEntity outOfBound(IndexOutOfBoundsException e) {
+        return ResponseEntity.status(200).build();
     }
 }
