@@ -15,10 +15,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Api> exception(Exception e) {
-//        log.info("에러개치", e);
+        log.info("에러개치", e);
         var response = Api.builder()
                 .resultCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()))
-                .resultMessage(HttpStatus.INTERNAL_SERVER_ERROR.name())
+                .resultMessage(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
                 .build();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
